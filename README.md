@@ -38,11 +38,11 @@ let building1 = Building()
 let building2 = Building()
 
 let tasks = [
-    Async.bind({ building1.fetchFloors($0) }),
-    Async.bind({ building1.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
+    Async.bind { building1.fetchFloors($0) },
+    Async.bind { building1.fetchRoomsOnFloor(Floor(name: "First floor"), $0) },
 
-    Async.bind({ building2.fetchFloors($0) }),
-    Async.bind({ building2.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
+    Async.bind { building2.fetchFloors($0) },
+    Async.bind { building2.fetchRoomsOnFloor(Floor(name: "First floor"), $0) },
 ]
 
 Async.parallel(tasks) { (results, error) in
@@ -67,7 +67,7 @@ let building2 = Building()
 let tasks = [
     building1.performAsyncWork1,
     building2.performAsyncWork2,
-    Async.bind({ building1.performAsyncWorkWithObject(nil, completionHandler: $0) }),
+    Async.bind { building1.performAsyncWorkWithObject(nil, completionHandler: $0) },
 ]
 
 Async.series(tasks) { (error) in
