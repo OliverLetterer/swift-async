@@ -39,7 +39,7 @@ public extension Async {
 }
 
 public extension Async {
-    static func parallel(tasks: [((T?, NSError?) -> ()) -> ()], completionHandler: ([T]?, NSError?) -> ()) {
+    static func parallel<T>(tasks: [((T?, NSError?) -> ()) -> ()], completionHandler: ([T]?, NSError?) -> ()) {
         if tasks.count == 0 {
             return completionHandler([], nil)
         }

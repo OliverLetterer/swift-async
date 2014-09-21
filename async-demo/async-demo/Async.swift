@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Async<T: Any> {
+public struct Async {
     static func bind(wrapper: ((NSError?) -> ()) -> ()) -> ((NSError?) -> ()) -> () {
         let result: ((NSError?) -> ()) -> () = { (function) in
             wrapper() { (error) in
@@ -19,7 +19,7 @@ public struct Async<T: Any> {
         return result
     }
 
-    static func bind(wrapper: ((T?, NSError?) -> ()) -> ()) -> ((Any?, NSError?) -> ()) -> () {
+    static func bind<T>(wrapper: ((T?, NSError?) -> ()) -> ()) -> ((Any?, NSError?) -> ()) -> () {
         let result: ((Any?, NSError?) -> ()) -> () = { (function) in
             wrapper() { (result, error) in
                 function(result, error)

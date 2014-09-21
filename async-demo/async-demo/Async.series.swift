@@ -30,11 +30,11 @@ public extension Async {
 }
 
 public extension Async {
-    static func series(tasks: [((T?, NSError?) -> ()) -> ()], completionHandler: ([T]?, NSError?) -> ()) {
+    static func series<T>(tasks: [((T?, NSError?) -> ()) -> ()], completionHandler: ([T]?, NSError?) -> ()) {
         _series(tasks, finalResults: [], completionHandler: completionHandler)
     }
     
-    private static func _series(var remainingTasks: [((T?, NSError?) -> ()) -> ()], var finalResults: [T], completionHandler: ([T]?, NSError?) -> ()) {
+    private static func _series<T>(var remainingTasks: [((T?, NSError?) -> ()) -> ()], var finalResults: [T], completionHandler: ([T]?, NSError?) -> ()) {
         if remainingTasks.count == 0 {
             return completionHandler(finalResults, nil)
         }

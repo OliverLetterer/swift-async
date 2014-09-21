@@ -133,11 +133,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let otherTasks = [
             building1.performAsyncWork1,
-            Async<Void>.bind({ building1.performAsyncWorkWithObject(nil, completionHandler: $0) }),
-//            building2.performAsyncWork2,
+            Async.bind({ building1.performAsyncWorkWithObject(nil, completionHandler: $0) }),
+            building2.performAsyncWork2,
         ]
         
-        Async<Void>.series(otherTasks) { (error) in
+        Async.series(otherTasks) { (error) in
             println("Group 2 completed")
 
             if let error = error {
