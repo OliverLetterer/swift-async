@@ -1,6 +1,6 @@
 # swift-async
 
-`swift-async` allows You to group async tasks, like loading data from the network or performing long running computations, together with a unified completion handler.
+`swift-async` provides a common interface for asynchronous control flow. It allows You to group async tasks, like loading data from the network or performing long running computations, together with a unified completion handler.
 
 ## Usage
 
@@ -85,7 +85,7 @@ All functions must take a unified completion handler that either takes
 * a single `NSError?` argument
 * or a generic type `T?` and a `NSError?` argument
 
-`swift-async` is __not__ thread safe, so You need to make sure that all completion handlers get executed on the same thread.
+`swift-async` is __not__ thread safe, so You need to make sure that all completion handlers are executed on the same thread.
 
 ---
 
