@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = "async"
+  s.name             = "swift-async"
   s.version          = "0.1.0"
   s.summary          = "Common interface for asynchronous control flow in #swift."
   s.homepage         = "https://github.com/OliverLetterer/swift-async"
