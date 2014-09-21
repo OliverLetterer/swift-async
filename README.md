@@ -1,6 +1,6 @@
 # swift-async
 
-`swift-async` provides a common interface for asynchronous control flow. It allows You to group async tasks, like loading data from the network or performing long running computations, together with a unified completion handler.
+`swift-async` provides a common interface for asynchronous control flow. It allows You to group async tasks, like loading data from the network or performing long running computations, together with a unified completion handler. Inpired by [node-async](https://github.com/caolan/async).
 
 ## Usage
 
