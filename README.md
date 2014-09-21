@@ -87,10 +87,12 @@ All functions must take a unified completion handler that either takes
 
 `swift-async` is __not__ thread safe, so You need to make sure that all completion handlers get executed on the same thread.
 
+---
 
+## Contact
 
-```
-func loadDataFromNetwork1(completionHandler: (result: NSDictionary, error: NSError) -> ()) {
+- [Oliver Letterer](http://github.com/OliverLetterer) ([@oletterer](https://twitter.com/oletterer))
 
-}
-```
+## License
+
+swift-async is released under an MIT license. See LICENSE for more information.
