@@ -8,34 +8,34 @@
 
 import UIKit
 
-class Room : NSObject, Printable, DebugPrintable {
+class Room : Printable, DebugPrintable {
     let number: Int
 
     init(number: Int) {
         self.number = number
     }
 
-    override var description: String {
+    var description: String {
         return "Room \(number)"
     }
 
-    override var debugDescription: String {
+    var debugDescription: String {
         return description
     }
 }
 
-class Floor : NSObject, Printable, DebugPrintable {
+class Floor : Printable, DebugPrintable {
     let name: String
 
     init(name: String) {
         self.name = name
     }
 
-    override var description: String {
+    var description: String {
         return "Floor \(name)"
     }
 
-    override var debugDescription: String {
+    var debugDescription: String {
         return description
     }
 }
@@ -133,8 +133,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let otherTasks = [
             building1.performAsyncWork1,
-            Async.bind({ building1.performAsyncWorkWithObject(nil, completionHandler: $0) }),
             building2.performAsyncWork2,
+            Async.bind({ building1.performAsyncWorkWithObject(nil, completionHandler: $0) }),
         ]
         
         Async.series(otherTasks) { (error) in

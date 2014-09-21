@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Async {
-    public static func series(tasks: [((NSError?) -> ()) -> ()], completionHandler: (NSError?) -> ()) {
+    static func series(tasks: [((NSError?) -> ()) -> ()], completionHandler: (NSError?) -> ()) {
         _series(tasks, completionHandler: completionHandler)
     }
 
