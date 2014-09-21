@@ -18,13 +18,7 @@ public extension Async {
     static func bind(wrapper: resultCompletionHandlerWrapper) -> Async<Any>.resultCompletionHandlerWrapper {
         let result: Async<Any>.resultCompletionHandlerWrapper = { (function) in
             wrapper() { (result, error) in
-                var upcastedResult: Any? = nil
-
-                if let result = result {
-                    upcastedResult = result
-                }
-
-                function(upcastedResult, error)
+                function(result, error)
             }
         }
 

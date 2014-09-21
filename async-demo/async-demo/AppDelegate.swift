@@ -86,12 +86,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let building = Building()
+        let building1 = Building()
+        let building2 = Building()
 
         let tasks = [
-            Async.bind({ building.fetchFloors($0) }),
-            Async.bind({ building.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
-            Async.bind({ building.fetchData($0) }),
+            Async.bind({ building1.fetchFloors($0) }),
+            Async.bind({ building1.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
+
+            Async.bind({ building2.fetchFloors($0) }),
+            Async.bind({ building2.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
         ]
 
         Async.series(tasks) { (results, error) in
