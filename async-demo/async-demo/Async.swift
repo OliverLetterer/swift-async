@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Async<T: Any> {
+public struct Async<T: Any> {
     typealias completionHandler = (NSError?) -> ()
     typealias resultCompletionHandler = (T?, NSError?) -> ()
     typealias resultCompletionHandlerWrapper = ((T?, NSError?) -> ()) -> ()
 }
 
-extension Async {
+public extension Async {
     static func bind(wrapper: resultCompletionHandlerWrapper) -> Async<Any>.resultCompletionHandlerWrapper {
         let result: Async<Any>.resultCompletionHandlerWrapper = { (function) in
             wrapper() { (result, error) in
@@ -32,7 +32,7 @@ extension Async {
     }
 }
 
-extension Async {
+public extension Async {
     static func parallel(tasks: [resultCompletionHandlerWrapper], completionHandler: ([T]?, NSError?) -> ()) {
         println("[Async] Executing \(tasks.count) tasks in parallel")
 
@@ -70,6 +70,34 @@ extension Async {
                     let results = optionalResults.map({ $0! })
                     completionHandler(results, nil)
                 }
+            }
+        }
+    }
+}
+
+public extension Async {
+    static func series(tasks: [resultCompletionHandlerWrapper], completionHandler: ([T]?, NSError?) -> ()) {
+        println("[Async] Executing \(tasks.count) tasks as a series")
+        _series(tasks, finalResults: [], completionHandler: completionHandler)
+    }
+
+    private static func _series(var remainingTasks: [resultCompletionHandlerWrapper], var finalResults: [T], completionHandler: ([T]?, NSError?) -> ()) {
+        if remainingTasks.count == 0 {
+            return completionHandler(finalResults, nil)
+        }
+
+        let nextTask = remainingTasks.removeAtIndex(0)
+        nextTask() { (result, error) in
+            if let error = error {
+                println("[Async] Task \(finalResults.count) failed with error: \(error)")
+                completionHandler(nil, error)
+            } else if let result = result {
+                println("[Async] Task \(finalResults.count) completed")
+                finalResults.append(result)
+                return self._series(remainingTasks, finalResults: finalResults, completionHandler: completionHandler)
+            } else {
+                println("[Async] task at index \(finalResults.count) must either return an error or a result")
+                fatalError("[Async] neither error nor result returned")
             }
         }
     }

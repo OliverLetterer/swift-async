@@ -91,10 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tasks = [
             Async.bind({ building.fetchFloors($0) }),
             Async.bind({ building.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
-//            Async.bind({ building.fetchData($0) }),
+            Async.bind({ building.fetchData($0) }),
         ]
 
-        Async.parallel(tasks) { (results, error) in
+        Async.series(tasks) { (results, error) in
             if let error = error {
                 println("Error: \(error)")
             } else if let results = results {
