@@ -86,23 +86,6 @@ class Building {
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func crashWithoutStackVariable() {
-        let building = Building()
-        Async.bind({ building.fetchFloors($0) })() { (result, error) in
-            println(result)
-            println(error)
-        }
-    }
-
-    func noCrashWithStackVariable() {
-        let building = Building()
-        let function = Async.bind({ building.fetchFloors($0) })
-        function { (result, error) in
-            println(result)
-            println(error)
-        }
-    }
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let building1 = Building()
         let building2 = Building()
