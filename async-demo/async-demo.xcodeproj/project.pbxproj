@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A733EB9919CED4EF005257B2 /* Async.parallel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733EB9819CED4EF005257B2 /* Async.parallel.swift */; };
+		A733EB9B19CED4FA005257B2 /* Async.series.swift in Sources */ = {isa = PBXBuildFile; fileRef = A733EB9A19CED4FA005257B2 /* Async.series.swift */; };
 		A73739A119CE08FB00029168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73739A019CE08FB00029168 /* AppDelegate.swift */; };
 		A73739A319CE08FB00029168 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73739A219CE08FB00029168 /* ViewController.swift */; };
 		A73739A619CE08FB00029168 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73739A419CE08FB00029168 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A733EB9819CED4EF005257B2 /* Async.parallel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.parallel.swift; sourceTree = "<group>"; };
+		A733EB9A19CED4FA005257B2 /* Async.series.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.series.swift; sourceTree = "<group>"; };
 		A737399B19CE08FB00029168 /* async-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "async-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A737399F19CE08FB00029168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A73739A019CE08FB00029168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				A73739E619CE0C1A00029168 /* Async.swift */,
+				A733EB9819CED4EF005257B2 /* Async.parallel.swift */,
+				A733EB9A19CED4FA005257B2 /* Async.series.swift */,
 				A73739A019CE08FB00029168 /* AppDelegate.swift */,
 				A73739A219CE08FB00029168 /* ViewController.swift */,
 				A73739A419CE08FB00029168 /* Main.storyboard */,
@@ -229,6 +235,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A733EB9B19CED4FA005257B2 /* Async.series.swift in Sources */,
+				A733EB9919CED4EF005257B2 /* Async.parallel.swift in Sources */,
 				A73739A319CE08FB00029168 /* ViewController.swift in Sources */,
 				A73739E719CE0C1A00029168 /* Async.swift in Sources */,
 				A73739A119CE08FB00029168 /* AppDelegate.swift in Sources */,
@@ -423,6 +431,7 @@
 				A73739BC19CE08FC00029168 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A73739BD19CE08FC00029168 /* Build configuration list for PBXNativeTarget "async-demoTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +440,7 @@
 				A73739BF19CE08FC00029168 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

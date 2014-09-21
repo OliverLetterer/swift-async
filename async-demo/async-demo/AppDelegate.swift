@@ -45,6 +45,24 @@ class Building {
 
     }
 
+    func performAsyncWork1(completionHandler: (NSError?) -> ()) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
+            completionHandler(nil)
+        }
+    }
+
+    func performAsyncWork2(completionHandler: (NSError?) -> ()) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
+            completionHandler(NSError(domain: NSURLErrorDomain, code: 0, userInfo: nil))
+        }
+    }
+
+    func performAsyncWorkWithObject(object: Any?, completionHandler: (NSError?) -> ()) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
+            completionHandler(nil)
+        }
+    }
+
     func fetchData(completionHandler: ([Room]?, NSError?) -> ()) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue()) {
             completionHandler(nil, NSError(domain: NSURLErrorDomain, code: 0, userInfo: nil))
@@ -97,7 +115,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Async.bind({ building2.fetchRoomsOnFloor(Floor(name: "First floor"), $0) }),
         ]
 
-        Async.series(tasks) { (results, error) in
+        Async.parallel(tasks) { (results, error) in
+            println("Group 1 completed")
+
             if let error = error {
                 println("Error: \(error)")
             } else if let results = results {
@@ -108,6 +128,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println("And rooms: \(rooms)")
             } else {
                 fatalError("Case not supported")
+            }
+        }
+
+        let otherTasks = [
+            building1.performAsyncWork1,
+            Async<Void>.bind({ building1.performAsyncWorkWithObject(nil, completionHandler: $0) }),
+//            building2.performAsyncWork2,
+        ]
+        
+        Async<Void>.series(otherTasks) { (error) in
+            println("Group 2 completed")
+
+            if let error = error {
+                return println("Error: \(error)")
+            } else {
+                println("Group 2 succeeded")
             }
         }
 
